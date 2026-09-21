@@ -1,21 +1,26 @@
 require("dotenv").config();
 const express = require("express");
-const bookRoutes = require("./routes/book.routes");
+const bookRoutes = require("./routes/book.routes.js");
 
-const app = express();
+
+
+const server = express();
 const PORT = process.env.PORT || 4000;
 
-app.use(express.json());
 
-// Importa as rotas com os caminhos completos (/books, /books/:id)
-app.use(bookRoutes);
+
+// Configura o Express para ler JSON no corpo das requisições do Insomnia
+server.use(express.json());
+
+// Registra as rotas
+server.use(bookRoutes);
 
 // Tratamento global de erros (Status 500)
-app.use((err, req, res, next) => {
+server.use((err, req, res, next) => {
   console.error("Erro interno:", err);
   return res.status(500).json({ error: "Erro interno do servidor." });
 });
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);
 });

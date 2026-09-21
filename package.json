@@ -2,10 +2,10 @@
   "name": "livraria-crud-back",
   "version": "1.0.0",
   "description": "API REST de Livraria com Zod, Express e Autenticação JWT",
-  "main": "src/app.js",
+  "main": "src/server.js",
   "scripts": {
-    "dev": "nodemon src/app.js",
-    "start": "node src/app.js"
+    "dev": "nodemon src/server.js",
+    "start": "node src/server.js"
   },
   "dependencies": {
     "bcryptjs": "^3.0.3",

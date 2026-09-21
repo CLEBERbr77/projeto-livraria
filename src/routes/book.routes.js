@@ -1,9 +1,10 @@
 const { Router } = require("express");
 const crypto = require("crypto");
 const { readBooksFromFile, saveBooksToFile } = require("../repositories/book.repository.js");
-const { createBookSchema, updateBookSchema } = require("../schemas/books.schema.js");
+const { createBookSchema, updateBookSchema } = require("../schemas/book.schema.js");
 const router = Router();
 
+// GET /books - Lista todos os livros (com filtro opcional por categoria)
 // GET /books - Lista todos os livros (com filtro opcional por categoria)
 router.get("/books", (req, res, next) => {
   try {
@@ -12,7 +13,7 @@ router.get("/books", (req, res, next) => {
 
     if (category) {
       books = books.filter(
-        (b) => b.category.toLowerCase() === category.toLowerCase()
+        (b) => b.category && b.category.toLowerCase() === category.toLowerCase()
       );
     }
 
